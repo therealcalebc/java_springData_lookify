@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cd.java.springdata.lookify.models.Song;
 import cd.java.springdata.lookify.services.SongService;
@@ -82,10 +83,18 @@ public class SongsController {
 	}
 	
 	@GetMapping("/search/topTen")
-	public String topTen(Model model) {
+	public String viewTopTen(Model model) {
 		List<Song> topTenList = songService.readManyTopTenRated();
 		model.addAttribute("toptensongs", topTenList);
 		return "search/topten.jsp";
+	}
+	
+	@GetMapping("/search")
+	public String viewSearchResults(@RequestParam String q, Model model) {
+		model.addAttribute("qval", q);
+		List<Song> searchList = songService.readManyByArtist(q);
+		model.addAttribute("results", searchList);
+		return "search/results.jsp";
 	}
 	
 }
