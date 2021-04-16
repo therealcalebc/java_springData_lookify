@@ -62,4 +62,9 @@ public class SongsApi {
 		songService.destroyOne(id);
 	}
 	
+	@GetMapping("/api/songs/topten")
+	public List<Song> reeadTopTen() {
+		return songService.readManyTopTenRated();
+	}
+	
 }

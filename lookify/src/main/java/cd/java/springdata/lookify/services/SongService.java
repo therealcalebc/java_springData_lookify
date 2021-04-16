@@ -28,8 +28,8 @@ public class SongService {
 	 * @param l the new Song to create in the db
 	 * @return the newly created song
 	 */
-	public Song createOne(Song l) {
-		return songRepository.save(l);
+	public Song createOne(Song s) {
+		return songRepository.save(s);
 	}
 	
 	/**
@@ -37,6 +37,21 @@ public class SongService {
 	 */
 	public List<Song> readAll() {
 		return songRepository.findAll();
+	}
+	
+	/**
+	 * @param search the artist to search for songs by
+	 * @return list of the songs in the db containing the artist
+	 */
+	public List<Song> readManyByArtist(String search) {
+		return songRepository.findByArtistContainingIgnoreCase(search);
+	}
+	
+	/**
+	 * @return list of the top 10 songs in the db with the highest rating
+	 */
+	public List<Song> readManyTopTenRated() {
+		return songRepository.findTop10ByOrderByRatingDesc();
 	}
 	
 	/**
@@ -55,8 +70,8 @@ public class SongService {
 	 * @param l the Song to update in the db
 	 * @return the updated song
 	 */
-	public Song updateOne(Song l) {
-		return songRepository.save(l);
+	public Song updateOne(Song s) {
+		return songRepository.save(s);
 	}
 	
 	/**

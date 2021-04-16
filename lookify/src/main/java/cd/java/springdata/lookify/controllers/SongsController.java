@@ -47,7 +47,6 @@ public class SongsController {
 	
 	@PostMapping("/songs")
 	public String addNew(@Valid @ModelAttribute Song song, BindingResult result) {
-		System.out.println("SongsController.addNew(): result.hasErrors() == " + result.hasErrors());
 		if(result.hasErrors()) return "songs/new.jsp";
 		songService.createOne(song);
 		return "redirect:/dashboard";
@@ -80,6 +79,13 @@ public class SongsController {
 	public String delete(@PathVariable Long id) {
 		songService.destroyOne(id);
 		return "redirect:/dashboard";
+	}
+	
+	@GetMapping("/search/topTen")
+	public String topTen(Model model) {
+		List<Song> topTenList = songService.readManyTopTenRated();
+		model.addAttribute("toptensongs", topTenList);
+		return "search/topten.jsp";
 	}
 	
 }
