@@ -48,7 +48,7 @@ public class SongsController {
 	@PostMapping("/songs")
 	public String addNew(@Valid @ModelAttribute Song song, BindingResult result) {
 		System.out.println("SongsController.addNew(): result.hasErrors() == " + result.hasErrors());
-		if(result.hasErrors())return "songs/new.jsp";
+		if(result.hasErrors()) return "songs/new.jsp";
 		songService.createOne(song);
 		return "redirect:/dashboard";
 	}
@@ -73,7 +73,7 @@ public class SongsController {
 	public String update(@Valid @ModelAttribute Song song, BindingResult result) {
 		if(result.hasErrors()) return "songs/edit.jsp";
 		songService.updateOne(song);
-		return "redirect:/songs";
+		return "redirect:/dashboard";
 	}
 	
 	@DeleteMapping("/songs/{id}")
