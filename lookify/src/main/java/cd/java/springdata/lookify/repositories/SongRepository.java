@@ -17,16 +17,16 @@ import cd.java.springdata.lookify.models.Song;
 @Repository
 public interface SongRepository extends CrudRepository<Song, Long> {
 	
-	// this method retrieves all the books from the database
+	// this method retrieves all the songs from the database
 	List<Song> findAll();
 	
-	// this method finds books with descriptions containing the search string
-	List<Song> findByDescriptionContaining(String search);
+	// this method finds songs with artists containing the search string
+	List<Song> findByArtistContaining(String search);
 	
-	// this method counts how many titles contain a certain string
+	// this method counts how many songs have titles containing the search string
 	Long countByTitleContaining(String search);
 	
-	// this method deletes a book that starts with a specific title
+	// this method deletes a song that has a title starting with the search string
 	Long deleteByTitleStartingWith(String search);
 	
 }
