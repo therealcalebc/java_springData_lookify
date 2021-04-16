@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,7 +38,7 @@ public class Song implements java.io.Serializable {
 	private Long id;
 	
 	@NotNull
-	@Size(min = 3, max = 200)
+	@Size(min = 5, max = 255)
 	private String title;
 	
 	@NotNull
@@ -45,7 +46,8 @@ public class Song implements java.io.Serializable {
 	private String artist;
 	
 	@NotNull
-	@Min(100)
+	@Min(1)
+	@Max(10)
 	private Integer rating;
 	
 	// This will prevent the createdAt column from being updated after creation
