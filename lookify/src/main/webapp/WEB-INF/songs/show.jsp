@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Songs!</title>
+	<title>Lookify!</title>
 </head>
 <body>
 	<div>
